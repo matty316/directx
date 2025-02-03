@@ -67,3 +67,35 @@ void SystemClass::Run() {
 		}
 	}
 }
+
+bool SystemClass::Frame() {
+	bool result;
+
+	if (m_Input->IsKeyDown(VK_ESCAPE))
+		return false;
+
+	result = m_Application->Frame();
+	if (!result)
+		return false;
+	return true;
+}
+
+LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lparam) {
+	switch (umsg) {
+	case WM_KEYDOWN: {
+		m_Input->KeyDown((unsigned int)wparam);
+		return 0;
+	}
+	case WM_KEYUP: {
+		m_Input->KeyUp((unsigned int)wparam);
+		return 0;
+	}
+	default: {
+		return DefWindowProc(hwnd, umsg, wparam, lparam);
+	}
+	}
+}
+
+void SystemClass::InitializeWindows(int& screenWitch, int& screenHeight) {
+
+}
