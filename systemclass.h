@@ -3,6 +3,9 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
+#include "applicationclass.h"
+#include "inputclass.h"
+
 class SystemClass {
 public:
 	SystemClass();
@@ -26,7 +29,7 @@ private:
 	HWND m_hwnd;
 
 	InputClass* m_Input;
-	Application* m_Application;
+	ApplicationClass* m_Application;
 };
 
 static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
